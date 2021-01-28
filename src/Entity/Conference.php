@@ -30,6 +30,11 @@ class Conference
     private $year;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isInternational;
+
+    /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="conference", orphanRemoval=true)
      */
     private $comments;
@@ -37,6 +42,11 @@ class Conference
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->city.' - '.$this->year;
     }
 
     public function getId(): ?int
@@ -64,6 +74,18 @@ class Conference
     public function setYear(string $year): self
     {
         $this->year = $year;
+
+        return $this;
+    }
+
+    public function getIsInternational(): ?bool
+    {
+        return $this->isInternational;
+    }
+
+    public function setIsInternational(bool $isInternational): self
+    {
+        $this->isInternational = $isInternational;
 
         return $this;
     }

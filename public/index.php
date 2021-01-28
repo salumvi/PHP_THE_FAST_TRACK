@@ -24,7 +24,7 @@ $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 
-dump($request); // barra lateral para depurar
+// dump($request); // barra lateral para depurar
 
 $response->send();
 $kernel->terminate($request, $response);
