@@ -12,6 +12,8 @@ services:
             MYSQL_USER: main
             MYSQL_PASSWORD: main
        
-         
+    redis:
+        ports: [6379]
+        image: redis:5-alpine
 volumes:
     guesbook:
