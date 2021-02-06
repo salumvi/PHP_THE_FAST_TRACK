@@ -29,7 +29,7 @@ class ConferenceController extends AbstractController
         //      // $user = sprintf('<h1> Hello %s! </h1>', htmlspecialchars($name));
         //  }
         return new Response($this->twig->render('conference/index.html.twig', [
-            'conferences' => $conferenceRepository->findAll(),
+         //   'conferences' => $conferenceRepository->findAll(),
             'user'=> $user,
         ]));
     }
@@ -37,9 +37,9 @@ class ConferenceController extends AbstractController
 
     
     /**
-     * @Route("/conference/{id}", name="conference")
+     * @Route("/conference/{slug}", name="conference")
      */
-    public function show(Request $request, Conference $conference, CommentRepository $commentRepository): Response
+    public function show(Request $request, Conference $conference,ConferenceRepository $conferenceRepository, CommentRepository $commentRepository): Response
     {
 
 
@@ -47,6 +47,7 @@ class ConferenceController extends AbstractController
         $paginator = $commentRepository->getCommentPaginator($conference, $offset); 
         return new Response($this->twig->render('conference/show.html.twig', [
             'conference' => $conference,
+           // 'conferences' => $conferenceRepository->findAll(),
             'comments' => $paginator,
             'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
