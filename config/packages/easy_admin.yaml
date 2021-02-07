@@ -3,13 +3,23 @@ easy_admin:
 
     design:
         menu:
-            - { route: 'homepage', label: 'Back to the website', icon: 'home' }
+            - { route: 'homepage', label: 'Volver a inicio', icon: 'home' }
             - { entity: 'Conference', label: 'Conferences', icon: 'map-marker' }
             - { entity: 'Comment', label: 'Comments', icon: 'comments' }
 
     entities:
         Conference:
             class: App\Entity\Conference
+            list:
+                fields:
+                    - slug
+                    - city
+                    - year
+                    - isInternational
+                    - comments
+                sort: [ 'year', 'DESC' ]
+                filters: [ 'city', 'year' ]
+
 
         Comment:
             class: App\Entity\Comment
@@ -17,6 +27,7 @@ easy_admin:
                 fields:
                     - author
                     - { property: 'email', type: 'email' }
+                    - { property: 'photoFilename', type: 'image', 'base_path': "/uploads/photos", label: 'Photo' }
                     - { property: 'createdAt', type: 'datetime' }
                 sort: ['createdAt', 'ASC']
                 filters: ['conference']
