@@ -11,6 +11,7 @@ services:
             MYSQL_DATABASE: main
             MYSQL_USER: main
             MYSQL_PASSWORD: main
+        ports: [3360:3306]
        
     redis:
         ports: [6379]
