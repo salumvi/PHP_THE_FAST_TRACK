@@ -11,10 +11,14 @@ services:
             MYSQL_DATABASE: main
             MYSQL_USER: main
             MYSQL_PASSWORD: main
-        ports: [3360:3306]
+       # ports: [3360:3306]
        
     redis:
         ports: [6379]
         image: redis:5-alpine
+
+    rabbitmq:
+        image: rabbitmq:3.7-management
+        ports: [5672, 15672]
 volumes:
     guesbook:
